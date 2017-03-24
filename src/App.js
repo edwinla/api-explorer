@@ -8,12 +8,28 @@ class App extends Component {
 
     this.state = {
       url: "",
-      method: ""
+      method: "",
+      header: {
+        key: "",
+        value: ""
+      }
     };
   }
 
   updateFieldFor = (field) => {
-    return (e) => this.setState({[field]: e.target.value})
+    field = field.split("-");
+    return (e) => {
+      if (field === "header") {
+        const {header} = this.state;
+        const newHeader = {
+          ...header,
+          [field[1]]: e.target.value
+        }
+        this.setState({header: newHeader});
+      } else {
+        this.setState({[field[0]]: e.target.value});
+      }
+    };
   }
 
   fetchData = () => {
@@ -32,13 +48,16 @@ class App extends Component {
           <h2>Welcome to API Explorer</h2>
         </div>
         <p className="App-intro">
+          Version 0.1a
+        </p>
+        <div className="App-content">
           <label>
             url
             <input
               type="text"
               onChange={this.updateFieldFor('url')}
               value={this.state.url}
-            />
+              />
           </label>
           <label>
             method
@@ -46,10 +65,20 @@ class App extends Component {
               type="text"
               onChange={this.updateFieldFor('method')}
               value={this.state.method}
-            />
+              />
           </label>
+          <div>
+            <label>
+              key
+              <input type="text" onChange={this.updateFieldFor('header-key')}/>
+            </label>
+            <label>
+              value
+              <input type="text" onChange={this.updateFieldFor('header-value')}/>
+            </label>
+          </div>
           <button onClick={this.fetchData}>submit</button>
-        </p>
+        </div>
       </div>
     );
   }
