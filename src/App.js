@@ -9,9 +9,12 @@ class App extends Component {
     this.state = {
       url: "",
       method: "",
-      header: {
-        key: "",
-        value: ""
+      hCount: 1,
+      headers: {
+        1: {
+          key: "",
+          value: ""
+        }
       }
     };
   }
@@ -19,17 +22,32 @@ class App extends Component {
   updateFieldFor = (field) => {
     field = field.split("-");
     return (e) => {
-      if (field === "header") {
-        const {header} = this.state;
-        const newHeader = {
-          ...header,
-          [field[1]]: e.target.value
-        }
-        this.setState({header: newHeader});
+      if (field[0] === "header") {
+        const {headers} = this.state, id = field[1], type = field[2];
+        const newHeader = {...headers[id], [type]: e.target.value};
+        const newHeaders = {...headers, [id]: newHeader}
+        this.setState({headers: newHeaders});
       } else {
         this.setState({[field[0]]: e.target.value});
       }
     };
+  }
+
+  addHeader = () => {
+    const {headers, hCount} = this.state;
+    const newHCount = hCount + 1;
+    const newHeaders = {
+      ...headers,
+      [hCount + 1]: {key: "", value: ""}
+    };
+    this.setState({headers: newHeaders, hCount: newHCount})
+  }
+
+  removeHeader = (id) => {
+    const {headers} = this.state;
+    const newHeaders = {...headers};
+    delete newHeaders[id];
+    this.setState({headers: newHeaders});
   }
 
   fetchData = () => {
@@ -41,6 +59,35 @@ class App extends Component {
   }
 
   render() {
+    const {headers} = this.state;
+    const renderHeaders = Object.keys(headers).map((id) => {
+      const headerFieldKey = `header-${id}-key`;
+      const headerValueKey = `header-${id}-value`;
+      return (
+        <div key={'header-input-' + id}>
+          <label>
+            key
+            <input
+              key={'header-' + id + '-key'}
+              type="text"
+              onChange={this.updateFieldFor(headerFieldKey)}
+              value={headers[id].key}
+            />
+          </label>
+          <label>
+            value
+            <input
+              key={'header-' + id + '-value'}
+              type="text"
+              onChange={this.updateFieldFor(headerValueKey)}
+              value={headers[id].value}
+            />
+          </label>
+          <button onClick={this.addHeader}>add</button>
+          <button onClick={() => this.removeHeader(id)}>remove</button>
+        </div>
+      );
+    });
     return (
       <div className="App">
         <div className="App-header">
@@ -68,14 +115,8 @@ class App extends Component {
               />
           </label>
           <div>
-            <label>
-              key
-              <input type="text" onChange={this.updateFieldFor('header-key')}/>
-            </label>
-            <label>
-              value
-              <input type="text" onChange={this.updateFieldFor('header-value')}/>
-            </label>
+            headers
+            {renderHeaders}
           </div>
           <button onClick={this.fetchData}>submit</button>
         </div>
