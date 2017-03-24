@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import cogwheel from './cogwheel.svg';
 import './App.css';
+import _ from 'underscore';
 
 class App extends Component {
   constructor() {
@@ -12,9 +13,16 @@ class App extends Component {
       hCount: 1,
       headers: {
         1: {
-          key: "",
-          value: ""
+          key: "Content-Type",
+          value: "application/json"
         }
+      }
+    };
+
+    this.defaultHeader = {
+      1: {
+        key: "Content-Type",
+        value: "application/json"
       }
     };
   }
@@ -47,7 +55,14 @@ class App extends Component {
     const {headers} = this.state;
     const newHeaders = {...headers};
     delete newHeaders[id];
-    this.setState({headers: newHeaders});
+
+    this.setState({headers: this.ensureDefaultHeaders(newHeaders)});
+  }
+
+  ensureDefaultHeaders = (headers) => {
+    if (_.isEmpty(headers)) return {...this.defaultHeader};
+
+    return headers;
   }
 
   fetchData = () => {
