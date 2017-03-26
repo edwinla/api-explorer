@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import cogwheel from './cogwheel.svg';
 import './App.css';
 import _ from 'underscore';
+import {updateBodyInputObj} from './App_util'
 
 class App extends Component {
   constructor() {
@@ -16,7 +17,30 @@ class App extends Component {
           key: "Content-Type",
           value: "application/json"
         }
-      }
+      },
+      body: [
+        {
+          name: 'email',
+          type: 'email',
+          value: ''
+        },
+        {
+          name: 'number',
+          type: 'number',
+          value: ''
+        },
+        {
+          name: 'phone',
+          type: 'tel',
+          pattern: '\d{3}[\-]\d{3}[\-]\d{4}',
+          value: ''
+        },
+        {
+          name: 'date',
+          type: 'date',
+          value: ''
+        }
+      ]
     };
 
     this.defaultHeader = {
@@ -65,16 +89,38 @@ class App extends Component {
     return headers;
   }
 
+  formatHeaders = (headers) => {
+    const headersAry = _.values(headers);
+    const formattedHeaders = {};
+    headersAry.forEach((header) => {
+      formattedHeaders[header.key] = header.value;
+    });
+
+    return formattedHeaders;
+  }
+
   fetchData = () => {
-    const {url, method} = this.state;
-    const myRequest = new Request(url, {method: method});
+    const {url, method, headers} = this.state;
+    const myRequest = new Request(url, {
+      method: method,
+      header: new Headers(this.formatHeaders(headers)),
+    });
     fetch(myRequest)
       .then((response) => response.json())
       .then((json) => console.log(json));
   }
 
+  updateBody = (event) => {
+    const {body} = this.state;
+    const target = event.target;
+    const newBody = updateBodyInputObj(target, body);
+
+    this.setState({body: newBody});
+  }
+
   render() {
-    const {headers} = this.state;
+    const {headers, body} = this.state;
+    console.log(body);
     const renderHeaders = Object.keys(headers).map((id) => {
       const headerFieldKey = `header-${id}-key`;
       const headerValueKey = `header-${id}-value`;
@@ -103,6 +149,23 @@ class App extends Component {
         </div>
       );
     });
+
+    const renderBody = body.map((obj) => {
+      return (
+        <div key={'body-div-' + obj.name}>
+          <label>
+            {obj.name}
+            <input
+              key={'body-input-' + obj.name}
+              name={obj.name}
+              type={obj.type}
+              onChange={this.updateBody}
+              value={obj.value}
+            />
+          </label>
+        </div>
+      );
+    });
     return (
       <div className="App">
         <div className="App-header">
@@ -110,7 +173,7 @@ class App extends Component {
           <h2>Welcome to API Explorer</h2>
         </div>
         <p className="App-intro">
-          Version 0.1a
+          Version 0.3a
         </p>
         <div className="App-content">
           <label>
@@ -132,6 +195,10 @@ class App extends Component {
           <div>
             headers
             {renderHeaders}
+          </div>
+          <div>
+            body
+            {renderBody}
           </div>
           <button onClick={this.fetchData}>submit</button>
         </div>
