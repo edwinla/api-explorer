@@ -1,31 +1,44 @@
 import React, {Component} from 'react';
+import _ from 'underscore';
 
 export default class ApiComponent extends Component  {
   constructor(props) {
     super(props);
 
     this.state = {
-      ...this.props.parameters
+      parameters: [...this.props.parameters]
+    };
+  }
+
+  handleUpdateParameter = (index) => {
+    return (event) => {
+      const newParameters = [...this.state.parameters];
+      newParameters[index].value = event.target.value;
+
+      this.setState({parameters: newParameters});
     };
   }
 
   render() {
-    const {routeDescription, parameters, method} = this.props;
+    const {resource, routeDescription} = this.props;
+    const {parameters} = this.state;
 
-    const renderParameters = this.props.parameters.map((parameter) => {
-      const {name, type, location, description} = parameter;
+    const renderParameters = parameters.map((parameter, index) => {
+      const {name, inputType, value, dataType, location, description} = parameter;
+
       return (
-        <div>
+        <div key={resource + '-parameter-' + name}>
           <div>{name}</div>
           <div>
             <input
+              key={resource + '-parameter-' + name + '-input'}
               name={name}
-              type="text"
-              value={this.state.parameters[name].value}
-              onClick={this.handleUpdateParameter}
+              type={inputType}
+              value={value}
+              onChange={this.handleUpdateParameter(index)}
             />
           </div>
-          <div>{type}</div>
+          <div>{dataType}</div>
           <div>{location}</div>
           <div>{description}</div>
         </div>
