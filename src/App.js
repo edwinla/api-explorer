@@ -9,8 +9,8 @@ class App extends Component {
     super();
 
     this.state = {
-      url: "",
-      method: "",
+      url: "https://jsonplaceholder.typicode.com/photos",
+      method: "post",
       hCount: 1,
       headers: {
         1: {
@@ -20,25 +20,20 @@ class App extends Component {
       },
       body: [
         {
-          name: 'email',
-          type: 'email',
-          value: ''
+          name: 'name',
+          type: 'name',
+          value: 'Edwin La'
         },
         {
-          name: 'number',
-          type: 'number',
-          value: ''
+          name: 'email',
+          type: 'email',
+          value: 'testemail@gmail.com'
         },
         {
           name: 'phone',
           type: 'tel',
           pattern: '\d{3}[\-]\d{3}[\-]\d{4}',
-          value: ''
-        },
-        {
-          name: 'date',
-          type: 'date',
-          value: ''
+          value: '123-456-7890'
         }
       ]
     };
@@ -100,10 +95,13 @@ class App extends Component {
   }
 
   fetchData = () => {
-    const {url, method, headers} = this.state;
+    const {url, method, headers, body} = this.state;
     const myRequest = new Request(url, {
       method: method,
-      header: new Headers(this.formatHeaders(headers)),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({body})
     });
     fetch(myRequest)
       .then((response) => response.json())
@@ -120,7 +118,6 @@ class App extends Component {
 
   render() {
     const {headers, body} = this.state;
-    console.log(body);
     const renderHeaders = Object.keys(headers).map((id) => {
       const headerFieldKey = `header-${id}-key`;
       const headerValueKey = `header-${id}-value`;
@@ -173,7 +170,7 @@ class App extends Component {
           <h2>Welcome to API Explorer</h2>
         </div>
         <p className="App-intro">
-          Version 0.3a
+          Version 0.4a
         </p>
         <div className="App-content">
           <label>
