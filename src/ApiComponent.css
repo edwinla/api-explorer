@@ -1,0 +1,58 @@
+.api-component {
+  text-align: left;
+  background-color: #f4f4f4;
+}
+
+.api-component-title {
+  padding: 12px 20px;
+}
+
+.api-component-method {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.api-component-action {
+  font-weight: bold;
+  margin-right: 16px;
+}
+
+.api-component-resource {
+  color: #888;
+}
+
+.api-component-form {
+  padding: 0 20px 12px;
+}
+
+.api-component-description {
+  color: #888;
+}
+
+.api-component-header, .api-component-parameters {
+  width: 100%;
+}
+
+.col {
+  display: inline-block;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.col-type, .col-location {
+  width: 10%;
+}
+
+.col-parameter {
+  width: 15%;
+  padding-left: 0;
+}
+
+.col-attributes {
+  width: 25%;
+}
+
+.col-description {
+  width: 40%;
+}

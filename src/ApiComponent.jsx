@@ -1,14 +1,20 @@
 import React, {Component} from 'react';
-import {filterObjectsWithKey} from './App_util';
+import {filterObjectsWithKey, formatAction} from './App_util';
 import _ from 'underscore';
+import {generate} from 'short-id';
+import ApiComponentParameter from './ApiComponentParameter';
+import './ApiComponent.css';
 
 export default class ApiComponent extends Component  {
   constructor(props) {
     super(props);
 
     this.state = {
-      parameters: [...this.props.parameters]
+      parameters: [...this.props.parameters],
+      data: [...this.props.data]
     };
+
+    this.handleUpdateParameter = this.handleUpdateParameter.bind(this);
   }
 
   handleUpdateParameter = (index) => {
@@ -28,49 +34,69 @@ export default class ApiComponent extends Component  {
       resource: resource,
       body: filterObjectsWithKey(this.state.parameters, 'attributes')
     };
-    
+
     fetchRequest(requestParams);
   }
 
   render() {
-    const {resource, routeDescription} = this.props;
-    const {parameters} = this.state;
+    const {resource, routeDescription, method} = this.props;
+    const {data} = this.state;
 
-    const renderParameters = parameters.map((parameter, index) => {
-      const {name, attributes, categories} = parameter;
-      const renderCategories = _.values(categories).map((category) => {
-        return <div key={resource + '-category-' + category}>{category}</div>;
-      });
 
+    const renderData = data.map((parameter) => {
       return (
-        <div key={resource + '-parameter-' + name}>
-          <div>{name}</div>
-          <div>
-            <input
-              key={resource + '-attributes-' + name}
-              name={name}
-              {...attributes}
-              onChange={this.handleUpdateParameter(index)}
-            />
-          </div>
-          {renderCategories}
-        </div>
+        <ApiComponentParameter
+          key={`api-component-parameter-${generate()}`}
+          parameter={parameter}
+          handleUpdateParameter={this.handleUpdateParameter}
+        />
       );
     });
 
+    // const renderParameters = parameters.map((parameter, index) => {
+    //   const {name, attributes, categories} = parameter;
+    //   const renderCategories = _.map(categories, (value, key) => {
+    //     return (
+    //       <div key={resource + '-category-' + value} className={'col col-' + key}>
+    //         {value}
+    //       </div>
+    //     );
+    //   });
+    //
+    //   return (
+    //     <div key={resource + '-parameter-' + name}>
+    //       <div>{name}</div>
+    //       <div>
+    //         <input
+    //           key={resource + '-attributes-' + name}
+    //           name={name}
+    //           {...attributes}
+    //           onChange={this.handleUpdateParameter(index)}
+    //         />
+    //       </div>
+    //       {renderCategories}
+    //     </div>
+    //   );
+    // });
+
     return (
-      <div>
-        <form onSubmit={this.handleSendRequest}>
-          <div className="api-route-description">{routeDescription}</div>
-          <div className="api-route-header">
-            <div>Parameter</div>
-            <div>Value</div>
-            <div>Type</div>
-            <div>Location</div>
-            <div>Description</div>
+      <div className="api-component">
+        <div className="api-component-title">
+          <span className="api-component-method">{method}</span>
+          <span className="api-component-action">{formatAction(method, resource)}</span>
+          <span className="api-component-resource">{`/${resource}`}</span>
+        </div>
+        <form className="api-component-form" onSubmit={this.handleSendRequest}>
+          <div className="api-component-description">{routeDescription}</div>
+          <div className="api-component-header">
+            <div className="col col-parameter">Parameter</div>
+            <div className="col col-attributes">Value</div>
+            <div className="col col-type">Type</div>
+            <div className="col col-location">Location</div>
+            <div className="col col-description">Description</div>
           </div>
-          <div>
-            {renderParameters}
+          <div className="api-component-parameters">
+            {renderData}
           </div>
           <button onSubmit={this.handleSendRequest}>submit</button>
         </form>
