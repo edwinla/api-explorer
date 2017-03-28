@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {filterObjectsWithKey} from './App_util';
 import _ from 'underscore';
 
 export default class ApiComponent extends Component  {
@@ -13,10 +14,22 @@ export default class ApiComponent extends Component  {
   handleUpdateParameter = (index) => {
     return (event) => {
       const newParameters = [...this.state.parameters];
-      newParameters[index].value = event.target.value;
+      newParameters[index].attributes.value = event.target.value;
 
       this.setState({parameters: newParameters});
     };
+  }
+
+  handleSendRequest = (event) => {
+    event.preventDefault();
+    const {method, resource, fetchRequest} = this.props;
+    const requestParams = {
+      method: method,
+      resource: resource,
+      body: filterObjectsWithKey(this.state.parameters, 'attributes')
+    };
+    
+    fetchRequest(requestParams);
   }
 
   render() {
@@ -24,30 +37,30 @@ export default class ApiComponent extends Component  {
     const {parameters} = this.state;
 
     const renderParameters = parameters.map((parameter, index) => {
-      const {name, inputType, value, dataType, location, description} = parameter;
+      const {name, attributes, categories} = parameter;
+      const renderCategories = _.values(categories).map((category) => {
+        return <div key={resource + '-category-' + category}>{category}</div>;
+      });
 
       return (
         <div key={resource + '-parameter-' + name}>
           <div>{name}</div>
           <div>
             <input
-              key={resource + '-parameter-' + name + '-input'}
+              key={resource + '-attributes-' + name}
               name={name}
-              type={inputType}
-              value={value}
+              {...attributes}
               onChange={this.handleUpdateParameter(index)}
             />
           </div>
-          <div>{dataType}</div>
-          <div>{location}</div>
-          <div>{description}</div>
+          {renderCategories}
         </div>
       );
     });
 
     return (
       <div>
-        <form>
+        <form onSubmit={this.handleSendRequest}>
           <div className="api-route-description">{routeDescription}</div>
           <div className="api-route-header">
             <div>Parameter</div>
@@ -59,6 +72,7 @@ export default class ApiComponent extends Component  {
           <div>
             {renderParameters}
           </div>
+          <button onSubmit={this.handleSendRequest}>submit</button>
         </form>
       </div>
     );
