@@ -35,6 +35,7 @@ export default class App extends Component {
               {
                 parameter: 'Full Name',
                 attributes: {
+                  name: 'Full Name',
                   type: 'text',
                   value: '',
                   placeholder: 'John Doe',
@@ -48,6 +49,7 @@ export default class App extends Component {
               {
                 parameter: 'Email',
                 attributes: {
+                  name: 'Email',
                   type: 'email',
                   value: '',
                   placeholder: 'John_Doe@email.com',
@@ -61,6 +63,7 @@ export default class App extends Component {
               {
                 parameter: 'Phone',
                 attributes: {
+                  name: 'Phone',
                   type: 'tel',
                   value: '',
                   placeholder: '### ### #####'

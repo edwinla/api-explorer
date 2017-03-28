@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+import ApiComponentParameter from './ApiComponentParameter';
 import {filterObjectsWithKey, formatAction} from './App_util';
 import _ from 'underscore';
 import {generate} from 'short-id';
-import ApiComponentParameter from './ApiComponentParameter';
 import './ApiComponent.css';
 
 export default class ApiComponent extends Component  {
@@ -10,7 +10,6 @@ export default class ApiComponent extends Component  {
     super(props);
 
     this.state = {
-      parameters: [...this.props.parameters],
       data: [...this.props.data]
     };
 
@@ -18,11 +17,11 @@ export default class ApiComponent extends Component  {
   }
 
   handleUpdateParameter = (index) => {
+    const that = this;
     return (event) => {
-      const newParameters = [...this.state.parameters];
-      newParameters[index].attributes.value = event.target.value;
-
-      this.setState({parameters: newParameters});
+      const newData = [...that.state.data];
+      newData[index].attributes.value = event.target.value;
+      that.setState({data: newData});
     };
   }
 
@@ -42,42 +41,16 @@ export default class ApiComponent extends Component  {
     const {resource, routeDescription, method} = this.props;
     const {data} = this.state;
 
-
-    const renderData = data.map((parameter) => {
+    const renderData = data.map((parameter, index) => {
       return (
         <ApiComponentParameter
           key={`api-component-parameter-${generate()}`}
           parameter={parameter}
+          index={index}
           handleUpdateParameter={this.handleUpdateParameter}
         />
       );
     });
-
-    // const renderParameters = parameters.map((parameter, index) => {
-    //   const {name, attributes, categories} = parameter;
-    //   const renderCategories = _.map(categories, (value, key) => {
-    //     return (
-    //       <div key={resource + '-category-' + value} className={'col col-' + key}>
-    //         {value}
-    //       </div>
-    //     );
-    //   });
-    //
-    //   return (
-    //     <div key={resource + '-parameter-' + name}>
-    //       <div>{name}</div>
-    //       <div>
-    //         <input
-    //           key={resource + '-attributes-' + name}
-    //           name={name}
-    //           {...attributes}
-    //           onChange={this.handleUpdateParameter(index)}
-    //         />
-    //       </div>
-    //       {renderCategories}
-    //     </div>
-    //   );
-    // });
 
     return (
       <div className="api-component">

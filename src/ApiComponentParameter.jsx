@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import _ from 'underscore';
 import {generate} from 'short-id';
 
-const ApiComponentParameter = ({parameter, handleUpdateParameter}) => {
+const ApiComponentParameter = ({parameter, handleUpdateParameter, index}) => {
   const renderCategories = _.map(parameter, (categoryValue, categoryKey) => {
     let render = categoryValue;
     if (typeof categoryValue === 'object') {
@@ -10,7 +10,7 @@ const ApiComponentParameter = ({parameter, handleUpdateParameter}) => {
         <input
           {...categoryValue}
           key={`attributes-${generate()}`}
-          onChange={handleUpdateParameter}
+          onChange={handleUpdateParameter(index)}
         />
       );
     }
