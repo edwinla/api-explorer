@@ -24,3 +24,24 @@ export const formatAction = (method, resource) => {
 
   return `${action} a ${resource}`;
 }
+
+export const getMethodClass = (method) => {
+  let styleClass = 'api-component-method';
+
+  switch (method) {
+    case 'post':
+      styleClass += ' http-post';
+      break;
+    case 'get':
+      styleClass += ' http-get';
+      break;
+    case 'patch':
+      styleClass += ' http-patch';
+      break;
+    case 'delete':
+      styleClass += ' http-delete';
+      break;
+  }
+
+  return styleClass;
+}

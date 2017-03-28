@@ -30,6 +30,24 @@
   color: #888;
 }
 
+.api-component-button {
+  background-color: #00c0a3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  height: 36px;
+  padding: 2px 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.api-component-button:active {
+  background-color: #A2E8DD;
+}
+
 .api-component-header, .api-component-parameters {
   width: 100%;
 }
@@ -55,4 +73,20 @@
 
 .col-description {
   width: 40%;
+}
+
+.http-get {
+  color: #8EC553;
+}
+
+.http-post {
+  color: #00b9b7;
+}
+
+.http-patch {
+  color: #ff5c1e;
+}
+
+.http-delete {
+  color: #f33f33;
 }

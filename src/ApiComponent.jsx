@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ApiComponentParameter from './ApiComponentParameter';
-import {filterObjectsWithKey, formatAction} from './App_util';
+import {filterObjectsWithKey, formatAction, getMethodClass} from './App_util';
 import _ from 'underscore';
 import {generate} from 'short-id';
 import './ApiComponent.css';
@@ -55,7 +55,7 @@ export default class ApiComponent extends Component  {
     return (
       <div className="api-component">
         <div className="api-component-title">
-          <span className="api-component-method">{method}</span>
+          <span className={getMethodClass(method)}>{method}</span>
           <span className="api-component-action">{formatAction(method, resource)}</span>
           <span className="api-component-resource">{`/${resource}`}</span>
         </div>
@@ -71,7 +71,7 @@ export default class ApiComponent extends Component  {
           <div className="api-component-parameters">
             {renderData}
           </div>
-          <button onSubmit={this.handleSendRequest}>submit</button>
+          <button className="api-component-button" onSubmit={this.handleSendRequest}>send</button>
         </form>
       </div>
     );
