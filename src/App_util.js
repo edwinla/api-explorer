@@ -7,6 +7,7 @@ export const filterObjectsWithKey = (arr, key) => {
 export const formatAction = (method, resource) => {
   resource = resource.charAt(0).toUpperCase() + resource.slice(1);
   let action;
+
   switch (method) {
     case 'get':
       action = 'Get';
@@ -44,4 +45,9 @@ export const getMethodClass = (method) => {
   }
 
   return styleClass;
+}
+
+export const hideElementClass = (boolean) => {
+  if (boolean) return 'hide-element';
+  return '';
 }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ApiComponentParameter from './ApiComponentParameter';
-import {filterObjectsWithKey, formatAction, getMethodClass} from './App_util';
+import {filterObjectsWithKey, formatAction, getMethodClass, hideElementClass} from './App_util';
 import _ from 'underscore';
 import {generate} from 'short-id';
 import './ApiComponent.css';
@@ -10,7 +10,8 @@ export default class ApiComponent extends Component  {
     super(props);
 
     this.state = {
-      data: [...this.props.data]
+      data: [...this.props.data],
+      hide: true
     };
 
     this.handleUpdateParameter = this.handleUpdateParameter.bind(this);
@@ -37,9 +38,15 @@ export default class ApiComponent extends Component  {
     fetchRequest(requestParams);
   }
 
+  handleToggleDisplay = () => {
+    const {hide} = this.state;
+    this.setState({hide: !hide});
+  }
+
+
   render() {
     const {resource, routeDescription, method} = this.props;
-    const {data} = this.state;
+    const {data, hide} = this.state;
 
     const renderData = data.map((parameter, index) => {
       return (
@@ -54,12 +61,15 @@ export default class ApiComponent extends Component  {
 
     return (
       <div className="api-component">
-        <div className="api-component-title">
+        <div onClick={this.handleToggleDisplay} className="api-component-title">
           <span className={getMethodClass(method)}>{method}</span>
-          <span className="api-component-action">{formatAction(method, resource)}</span>
+          <span className="api-component-action">
+            {formatAction(method, resource)}
+          </span>
           <span className="api-component-resource">{`/${resource}`}</span>
         </div>
-        <form className="api-component-form" onSubmit={this.handleSendRequest}>
+        <form
+          className={`api-component-form ${hideElementClass(hide)}`} onSubmit={this.handleSendRequest}>
           <div className="api-component-description">{routeDescription}</div>
           <div className="api-component-header">
             <div className="col col-parameter">Parameter</div>
@@ -68,10 +78,11 @@ export default class ApiComponent extends Component  {
             <div className="col col-location">Location</div>
             <div className="col col-description">Description</div>
           </div>
-          <div className="api-component-parameters">
-            {renderData}
-          </div>
-          <button className="api-component-button" onSubmit={this.handleSendRequest}>send</button>
+          <div className="api-component-parameters">{renderData}</div>
+          <button
+            className="api-component-button" onSubmit={this.handleSendRequest}>
+            send
+          </button>
         </form>
       </div>
     );

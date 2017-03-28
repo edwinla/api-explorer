@@ -1,10 +1,12 @@
 .api-component {
   text-align: left;
   background-color: #f4f4f4;
+  border-radius: 4px;
 }
 
 .api-component-title {
   padding: 12px 20px;
+  cursor: pointer;
 }
 
 .api-component-method {
@@ -23,7 +25,8 @@
 }
 
 .api-component-form {
-  padding: 0 20px 12px;
+  padding: 0 20px 16px;
+  transition: all 2s;
 }
 
 .api-component-description {
@@ -40,6 +43,7 @@
   font-weight: 600;
   height: 36px;
   padding: 2px 16px;
+  margin-top: 16px;
   cursor: pointer;
   outline: none;
 }
@@ -52,10 +56,30 @@
   width: 100%;
 }
 
+.api-component-parameter {
+  border-bottom: 1px solid #ddd;
+}
+
+.api-component-parameter:last-of-type {
+  border-bottom: 2px solid #ddd;
+}
+
+.api-parameter-input {
+  box-sizing: border-box;
+  height: 30px;
+  width: 150px;
+  border: 1px solid #ddd;
+  padding: 0 16px;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+}
+
 .col {
   display: inline-block;
   padding: 10px;
   box-sizing: border-box;
+  vertical-align: top;
 }
 
 .col-type, .col-location {
@@ -89,4 +113,8 @@
 
 .http-delete {
   color: #f33f33;
+}
+
+.hide-element {
+  display: none !important;
 }

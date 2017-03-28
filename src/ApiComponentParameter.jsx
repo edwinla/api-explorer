@@ -10,6 +10,7 @@ const ApiComponentParameter = ({parameter, handleUpdateParameter, index}) => {
         <input
           {...categoryValue}
           key={`attributes-${generate()}`}
+          className="api-parameter-input"
           onChange={handleUpdateParameter(index)}
         />
       );
@@ -25,7 +26,7 @@ const ApiComponentParameter = ({parameter, handleUpdateParameter, index}) => {
     );
   });
 
-  return <div className>{renderCategories}</div>;
+  return <div className="api-component-parameter">{renderCategories}</div>;
 };
 
 export default ApiComponentParameter;
