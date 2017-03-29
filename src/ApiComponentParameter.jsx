@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import _ from 'underscore';
-import {generate} from 'short-id';
 
-const ApiComponentParameter = ({parameter, handleUpdateParameter, index}) => {
+const ApiComponentParameter = ({parameter, handleUpdateParameter, index, resource}) => {
+  const name = parameter.attributes.name;
   const renderCategories = _.map(parameter, (categoryValue, categoryKey) => {
     let render = categoryValue;
     if (typeof categoryValue === 'object') {
       render = (
         <input
           {...categoryValue}
-          key={`attributes-${generate()}`}
+          key={`${resource}-${name}`}
           className="api-parameter-input"
           onChange={handleUpdateParameter(index)}
         />
@@ -18,7 +18,7 @@ const ApiComponentParameter = ({parameter, handleUpdateParameter, index}) => {
 
     return (
       <div
-        key={`${categoryKey}-${generate()}`}
+        key={`${name}-${categoryKey}`}
         className={`col col-${categoryKey}`}
       >
         {render}

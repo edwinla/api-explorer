@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ApiComponentParameter from './ApiComponentParameter';
 import {filterObjectsWithKey, formatAction, getMethodClass, hideElementClass} from './App_util';
 import _ from 'underscore';
-import {generate} from 'short-id';
 import './ApiComponent.css';
 
 export default class ApiComponent extends Component  {
@@ -51,9 +50,10 @@ export default class ApiComponent extends Component  {
     const renderData = data.map((parameter, index) => {
       return (
         <ApiComponentParameter
-          key={`api-component-parameter-${generate()}`}
+          key={`api-component-parameter-${parameter.attributes.name}`}
           parameter={parameter}
           index={index}
+          resource={resource}
           handleUpdateParameter={this.handleUpdateParameter}
         />
       );

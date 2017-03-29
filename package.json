@@ -5,7 +5,6 @@
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "short-id": "0.1.0-1",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
