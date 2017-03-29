@@ -54,7 +54,6 @@ export const hideElementClass = (boolean) => {
 
 export const fetchRequest = (data) => {
   const {method, resource, body} = data;
-
   const myRequest = {
     method: method,
     headers: {
@@ -62,10 +61,15 @@ export const fetchRequest = (data) => {
     }
   }
 
+  let url = `https://jsonplaceholder.typicode.com/${resource}`;
+
   if (method === 'post') myRequest.body = JSON.stringify({body});
+  if (method === 'get' && body.length > 0) {
+    url += `/${body[0].value}`
+  }
 
   return (
-    fetch(`https://jsonplaceholder.typicode.com/${resource}`, myRequest)
+    fetch(url, myRequest)
       .then(response => response.json())
   );
 }

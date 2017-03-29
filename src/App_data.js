@@ -61,9 +61,9 @@ export const exploreUsersData = [
     method: 'get',
     data: [
       {
-        parameter: 'User Id',
+        parameter: 'id',
         attributes: {
-          name: 'User Id',
+          name: 'id',
           type: 'number',
           value: '',
         },
