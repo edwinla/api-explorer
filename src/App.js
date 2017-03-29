@@ -4,18 +4,6 @@ import ApiComponent from './ApiComponent';
 import './App.css';
 
 export default class App extends Component {
-  fetchRequest(data) {
-    const {method, resource, body} = data;
-
-    fetch(`https://jsonplaceholder.typicode.com/${resource}`, {
-      method: method,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({body})
-    }).then(response => response.json()).then(obj => console.log(obj));
-  }
-
   render() {
     return (
       <div className="App">
@@ -118,7 +106,6 @@ export default class App extends Component {
                 }
               }
             ]}
-            fetchRequest={this.fetchRequest}
           />
         </div>
       </div>

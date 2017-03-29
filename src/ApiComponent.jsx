@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ApiComponentParameter from './ApiComponentParameter';
-import {filterObjectsWithKey, formatAction, getMethodClass, hideElementClass} from './App_util';
+import {filterObjectsWithKey, formatAction, getMethodClass, hideElementClass, fetchRequest} from './App_util';
 import _ from 'underscore';
 import './ApiComponent.css';
 
@@ -10,7 +10,8 @@ export default class ApiComponent extends Component  {
 
     this.state = {
       data: [...this.props.data],
-      hide: true
+      hide: true,
+      response: null
     };
 
     this.handleUpdateParameter = this.handleUpdateParameter.bind(this);
@@ -27,14 +28,15 @@ export default class ApiComponent extends Component  {
 
   handleSendRequest = (event) => {
     event.preventDefault();
-    const {method, resource, fetchRequest} = this.props;
+    const {method, resource} = this.props;
     const requestParams = {
       method: method,
       resource: resource,
       body: filterObjectsWithKey(this.state.data, 'attributes')
     };
 
-    fetchRequest(requestParams);
+    fetchRequest(requestParams)
+      .then(response => this.setState({response}));
   }
 
   handleToggleDisplay = () => {
@@ -45,7 +47,7 @@ export default class ApiComponent extends Component  {
 
   render() {
     const {resource, routeDescription, method} = this.props;
-    const {data, hide} = this.state;
+    const {data, hide, response} = this.state;
 
     const renderData = data.map((parameter, index) => {
       return (
@@ -84,6 +86,12 @@ export default class ApiComponent extends Component  {
             send
           </button>
         </form>
+        <div className="api-component-response">
+          {(response ?
+              <pre className="pretty-print">
+                {JSON.stringify(response, null, 2)}
+              </pre> : false)}
+        </div>
       </div>
     );
   }

@@ -75,6 +75,21 @@
   font-size: 14px;
 }
 
+.api-component-response {
+  background-color: #fff;
+  color: #080;
+  margin: 12px 20px;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+}
+
+.pretty-print {
+  display: block;
+  padding: 10px 30px;
+  margin: 0;
+  overflow: scroll;
+}
+
 .col {
   display: inline-block;
   padding: 10px;

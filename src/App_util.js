@@ -51,3 +51,15 @@ export const hideElementClass = (boolean) => {
   if (boolean) return 'hide-element';
   return '';
 }
+
+export const fetchRequest = (data) => {
+  const {method, resource, body} = data;
+
+  return fetch(`https://jsonplaceholder.typicode.com/${resource}`, {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({body})
+  }).then(response => response.json());
+}
