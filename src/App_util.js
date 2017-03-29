@@ -4,44 +4,23 @@ export const filterObjectsWithKey = (arr, key) => {
   }, []);
 };
 
-export const formatAction = (method, resource) => {
-  resource = resource.charAt(0).toUpperCase() + resource.slice(1);
-  let action;
-
-  switch (method) {
-    case 'get':
-      action = 'Get';
-      break;
-    case 'post':
-      action = 'Create';
-      break;
-    case 'patch':
-      action = 'Update';
-      break;
-    case 'delete':
-      action = 'Delete'
-      break;
-  }
-
-  return `${action} a ${resource}`;
-}
-
 export const getMethodClass = (method) => {
   let styleClass = 'api-component-method';
 
   switch (method) {
-    case 'post':
+    case 'POST':
       styleClass += ' http-post';
       break;
-    case 'get':
+    case 'GET':
       styleClass += ' http-get';
       break;
-    case 'patch':
+    case 'PATCH':
       styleClass += ' http-patch';
       break;
-    case 'delete':
+    case 'DELETE':
       styleClass += ' http-delete';
       break;
+      default:
   }
 
   return styleClass;
@@ -63,10 +42,15 @@ export const fetchRequest = (data) => {
 
   let url = `https://jsonplaceholder.typicode.com/${resource}`;
 
-  if (method === 'post') myRequest.body = JSON.stringify({body});
-  if (method === 'get' && body.length > 0) {
+  if (method === 'POST' || method === 'PATCH') {
+    myRequest.body = JSON.stringify({body});
+  }
+
+  if ((method !== 'POST') && body.length > 0) {
     url += `/${body[0].value}`
   }
+
+  debugger;
 
   return (
     fetch(url, myRequest)

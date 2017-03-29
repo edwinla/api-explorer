@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import ApiComponentParameter from './ApiComponentParameter';
-import {filterObjectsWithKey, formatAction, getMethodClass, hideElementClass, fetchRequest} from './App_util';
-import _ from 'underscore';
+import {
+  filterObjectsWithKey,
+  getMethodClass,
+  hideElementClass,
+  fetchRequest
+} from './App_util';
 import './ApiComponent.css';
 
 export default class ApiComponent extends Component  {
@@ -49,13 +53,13 @@ export default class ApiComponent extends Component  {
   }
 
   render() {
-    const {resource, route, routeDescription, method} = this.props;
+    const {resource, route, routeTitle, routeDescription, method} = this.props;
     const {data, hide, response} = this.state;
 
     const renderData = data.map((parameter, index) => {
       return (
         <ApiComponentParameter
-          key={`api-component-parameter-${parameter.attributes.name}`}
+          key={`api-${resource}-${method}-${parameter.attributes.name}`}
           parameter={parameter}
           index={index}
           resource={resource}
@@ -70,7 +74,7 @@ export default class ApiComponent extends Component  {
         <div onClick={this.handleToggleDisplay} className="api-component-title">
           <span className={getMethodClass(method)}>{method}</span>
           <span className="api-component-action">
-            {formatAction(method, resource)}
+            {routeTitle}
           </span>
           <span className="api-component-resource">{route}</span>
         </div>
