@@ -1,6 +1,6 @@
 export const filterObjectsWithKey = (arr, key) => {
   return arr.reduce((acc, obj) => {
-    return acc.concat([{...obj[key], name: obj.name}])
+    return acc.concat([{...obj[key], name: obj.parameter}]);
   }, []);
 };
 
@@ -55,11 +55,17 @@ export const hideElementClass = (boolean) => {
 export const fetchRequest = (data) => {
   const {method, resource, body} = data;
 
-  return fetch(`https://jsonplaceholder.typicode.com/${resource}`, {
+  const myRequest = {
     method: method,
     headers: {
       'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({body})
-  }).then(response => response.json());
+    }
+  }
+
+  if (method === 'post') myRequest.body = JSON.stringify({body});
+
+  return (
+    fetch(`https://jsonplaceholder.typicode.com/${resource}`, myRequest)
+      .then(response => response.json())
+  );
 }

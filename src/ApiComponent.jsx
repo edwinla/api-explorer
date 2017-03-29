@@ -49,7 +49,7 @@ export default class ApiComponent extends Component  {
   }
 
   render() {
-    const {resource, routeDescription, method} = this.props;
+    const {resource, route, routeDescription, method} = this.props;
     const {data, hide, response} = this.state;
 
     const renderData = data.map((parameter, index) => {
@@ -59,6 +59,7 @@ export default class ApiComponent extends Component  {
           parameter={parameter}
           index={index}
           resource={resource}
+          route={route}
           handleUpdateParameter={this.handleUpdateParameter}
         />
       );
@@ -71,7 +72,7 @@ export default class ApiComponent extends Component  {
           <span className="api-component-action">
             {formatAction(method, resource)}
           </span>
-          <span className="api-component-resource">{`/${resource}`}</span>
+          <span className="api-component-resource">{route}</span>
         </div>
         <form
           className={`api-component-form ${hideElementClass(hide)}`} onSubmit={this.handleSendRequest}>
