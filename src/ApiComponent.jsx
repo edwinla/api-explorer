@@ -44,6 +44,9 @@ export default class ApiComponent extends Component  {
     this.setState({hide: !hide});
   }
 
+  handleClearResults = () => {
+    this.setState({response: null});
+  }
 
   render() {
     const {resource, routeDescription, method} = this.props;
@@ -81,17 +84,25 @@ export default class ApiComponent extends Component  {
             <div className="col col-description">Description</div>
           </div>
           <div className="api-component-parameters">{renderData}</div>
-          <button
-            className="api-component-button" onSubmit={this.handleSendRequest}>
-            send
-          </button>
+          <div>
+            <button
+              className="api-component-button" onSubmit={this.handleSendRequest}>
+              send
+            </button>
+            <span
+              className="api-clear-results"
+              onClick={this.handleClearResults}
+            >
+              Clear results
+            </span>
+          </div>
         </form>
-        <div className="api-component-response">
           {(response ?
+            <div className={`api-component-response ${hideElementClass(hide)}`}>
               <pre className="pretty-print">
                 {JSON.stringify(response, null, 2)}
-              </pre> : false)}
-        </div>
+              </pre>
+            </div> : null)}
       </div>
     );
   }

@@ -43,13 +43,18 @@
   font-weight: 600;
   height: 36px;
   padding: 2px 16px;
-  margin-top: 16px;
+  margin: 16px 16px 0 0;
   cursor: pointer;
   outline: none;
 }
 
 .api-component-button:active {
   background-color: #A2E8DD;
+}
+
+.api-clear-results {
+  color: #00c0a3;
+  cursor: pointer;
 }
 
 .api-component-header, .api-component-parameters {
