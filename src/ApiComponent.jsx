@@ -31,7 +31,7 @@ export default class ApiComponent extends Component  {
     const requestParams = {
       method: method,
       resource: resource,
-      body: filterObjectsWithKey(this.state.parameters, 'attributes')
+      body: filterObjectsWithKey(this.state.data, 'attributes')
     };
 
     fetchRequest(requestParams);

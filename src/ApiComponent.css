@@ -67,7 +67,7 @@
 .api-parameter-input {
   box-sizing: border-box;
   height: 30px;
-  width: 150px;
+  width: 100%;
   border: 1px solid #ddd;
   padding: 0 16px;
   border-radius: 3px;
