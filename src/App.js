@@ -12,7 +12,7 @@ export default class App extends Component {
           <h2>Welcome to API Explorer</h2>
         </div>
         <p className="App-intro">
-          Version 0.5a
+          This API Explorer performs requests on a fake online RESTful API server powered by <a className="App-link" href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a>.
         </p>
         <div className="App-content">
           <ApiComponent

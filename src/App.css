@@ -30,6 +30,15 @@
   max-width: 1200px;
 }
 
+.App-link {
+  text-decoration: none;
+  color: black;
+}
+
+.App-link:hover, .App-link:focus, .App-link:active {
+  color: #00c0a3;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
