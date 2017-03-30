@@ -1,40 +1,40 @@
-.api-component {
+.Api-component {
   text-align: left;
   background-color: #f4f4f4;
   border-radius: 4px;
   margin-bottom: 6px;
 }
 
-.api-component-title {
+.Api-component-title {
   padding: 12px 20px;
   cursor: pointer;
 }
 
-.api-component-method {
+.Api-component-method {
   text-transform: uppercase;
   font-weight: bold;
   margin-right: 16px;
 }
 
-.api-component-action {
+.Api-component-action {
   font-weight: bold;
   margin-right: 16px;
 }
 
-.api-component-resource {
+.Api-component-resource {
   color: #888;
 }
 
-.api-component-form {
+.Api-component-form {
   padding: 0 20px 16px;
   transition: all 2s;
 }
 
-.api-component-description {
+.Api-component-description {
   color: #888;
 }
 
-.api-component-button {
+.Api-component-button {
   background-color: #00c0a3;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 2px;
@@ -49,28 +49,28 @@
   outline: none;
 }
 
-.api-component-button:active {
+.Api-component-button:active {
   background-color: #A2E8DD;
 }
 
-.api-clear-results {
+.Api-component-clear-response {
   color: #00c0a3;
   cursor: pointer;
 }
 
-.api-component-header, .api-component-parameters {
+.Api-component-header, .Api-component-parameters {
   width: 100%;
 }
 
-.api-component-parameter {
+.Api-component-parameter {
   border-bottom: 1px solid #ddd;
 }
 
-.api-component-parameter:last-of-type {
+.Api-component-parameter:last-of-type {
   border-bottom: 2px solid #ddd;
 }
 
-.api-parameter-input {
+.Api-parameter-input {
   box-sizing: border-box;
   height: 30px;
   width: 100%;
@@ -81,61 +81,46 @@
   font-size: 14px;
 }
 
-.api-component-response {
-  background-color: #fff;
-  color: #080;
-  margin: 12px 20px;
-  border: 1px solid #e3e3e3;
-  border-radius: 3px;
-}
-
-.pretty-print {
-  display: block;
-  padding: 10px 30px;
-  margin: 0;
-  overflow: scroll;
-}
-
-.col {
+.Col {
   display: inline-block;
   padding: 10px;
   box-sizing: border-box;
   vertical-align: top;
 }
 
-.col-type, .col-location {
+.Col-type, .Col-location {
   width: 10%;
 }
 
-.col-parameter {
+.Col-parameter {
   width: 15%;
   padding-left: 0;
 }
 
-.col-attributes {
+.Col-attributes {
   width: 25%;
 }
 
-.col-description {
+.Col-description {
   width: 40%;
 }
 
-.http-get {
+.Http-GET {
   color: #8EC553;
 }
 
-.http-post {
+.Http-POST {
   color: #00b9b7;
 }
 
-.http-patch {
+.Http-PATCH {
   color: #ff5c1e;
 }
 
-.http-delete {
+.Http-DELETE {
   color: #f33f33;
 }
 
-.hide-element {
+.Hide-element {
   display: none !important;
 }

@@ -1,29 +1,7 @@
 const API_URL = 'https://api-explorer-server.herokuapp.com/';
 
-export const getMethodClass = (method) => {
-  let styleClass = 'api-component-method';
-
-  switch (method) {
-    case 'POST':
-      styleClass += ' http-post';
-      break;
-    case 'GET':
-      styleClass += ' http-get';
-      break;
-    case 'PATCH':
-      styleClass += ' http-patch';
-      break;
-    case 'DELETE':
-      styleClass += ' http-delete';
-      break;
-      default:
-  }
-
-  return styleClass;
-}
-
 export const hideElementClass = (boolean) => {
-  if (boolean) return 'hide-element';
+  if (boolean) return 'Hide-element';
   return '';
 }
 

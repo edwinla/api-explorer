@@ -1,7 +1,7 @@
 import React from 'react';
-import cogwheel from './cogwheel.svg';
 import ApiComponent from './ApiComponent';
 import './App.css';
+import cogwheel from './cogwheel.svg';
 import {resourceUsers, resourceCars} from './App_data';
 
 const App = () => {
@@ -22,15 +22,15 @@ const App = () => {
         <h2>Welcome to API Explorer</h2>
       </div>
       <p className="App-intro">
-        This API Explorer performs requests on a fake online RESTful API server powered by <a className="App-link" href="https://jsonplaceholder.typicode.com/" target="_blank">JSONPlaceholder</a>.
+        This API Explorer performs requests on a fake online RESTful API server powered by <a className="App-link" href="https://github.com/typicode/json-server" target="_blank">json-server</a>.
       </p>
       <div className="App-content">
         <div>
-          <div>Users</div>
+          <div className="Resource-title">Users</div>
           {mapResourceData(resourceUsers)}
         </div>
         <div>
-          <div>Cars</div>
+          <div className="Resource-title">Cars</div>
           {mapResourceData(resourceCars)}
         </div>
       </div>

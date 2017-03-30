@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import ApiComponentParameter from './ApiComponentParameter';
+import ApiComponentResponse from './ApiComponentResponse';
 import {
   filterObjectsWithKey,
-  getMethodClass,
-  hideElementClass,
-  fetchRequest
+  fetchRequest,
+  hideElementClass
 } from './App_util';
-import './ApiComponent.css';
+import './Api_component.css';
 
 export default class ApiComponent extends Component  {
   constructor(props) {
@@ -70,44 +70,53 @@ export default class ApiComponent extends Component  {
     });
 
     return (
-      <div className="api-component">
-        <div onClick={this.handleToggleDisplay} className="api-component-title">
-          <span className={getMethodClass(method)}>{method}</span>
-          <span className="api-component-action">
+      <div className="Api-component">
+        <div
+          onClick={this.handleToggleDisplay}
+          className="Api-component-title"
+        >
+          <span
+            className={`Api-component-method Http-${method}`}
+          >
+            {method}
+          </span>
+          <span className="Api-component-action">
             {routeTitle}
           </span>
-          <span className="api-component-resource">{route}</span>
+          <span className="Api-component-resource">{route}</span>
         </div>
         <form
-          className={`api-component-form ${hideElementClass(hide)}`} onSubmit={this.handleSendRequest}>
-          <div className="api-component-description">{routeDescription}</div>
-          <div className="api-component-header">
-            <div className="col col-parameter">Parameter</div>
-            <div className="col col-attributes">Value</div>
-            <div className="col col-type">Type</div>
-            <div className="col col-location">Location</div>
-            <div className="col col-description">Description</div>
+          className={`Api-component-form ${hideElementClass(hide)}`}
+          onSubmit={this.handleSendRequest}
+        >
+          <div className="Api-component-description">{routeDescription}</div>
+          <div className="Api-component-header">
+            <div className="Col Col-parameter">Parameter</div>
+            <div className="Col Col-attributes">Value</div>
+            <div className="Col Col-type">Type</div>
+            <div className="Col Col-location">Location</div>
+            <div className="Col Col-description">Description</div>
           </div>
-          <div className="api-component-parameters">{renderData}</div>
+          <div className="Api-component-parameters">{renderData}</div>
           <div>
             <button
-              className="api-component-button" onSubmit={this.handleSendRequest}>
+              className="Api-component-button"
+              onSubmit={this.handleSendRequest}
+            >
               send
             </button>
             <span
-              className="api-clear-results"
+              className="Api-component-clear-response"
               onClick={this.handleClearResults}
             >
               Clear results
             </span>
           </div>
         </form>
-          {(response ?
-            <div className={`api-component-response ${hideElementClass(hide)}`}>
-              <pre className="pretty-print">
-                {JSON.stringify(response, null, 2)}
-              </pre>
-            </div> : null)}
+          {response ?
+            <ApiComponentResponse
+              response={response}
+              hideClass={hideElementClass(hide)} /> : null}
       </div>
     );
   }
