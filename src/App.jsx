@@ -3,7 +3,7 @@ import ApiComponent from './ApiComponent';
 import './App.css';
 import {resourceUsers, resourceCars} from './App_data';
 
-const App = () => {
+function App() {
   const mapResourceData = (data) => {
     return (
       data.map((route, idx) => {
@@ -35,6 +35,6 @@ const App = () => {
       </div>
     </div>
   );
-};
+}
 
 export default App;

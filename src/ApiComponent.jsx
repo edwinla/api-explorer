@@ -25,7 +25,11 @@ export default class ApiComponent extends Component  {
     const that = this;
     return (event) => {
       const newData = [...that.state.data];
-      newData[index].attributes.value = event.target.value;
+      let value = event.target.value;
+      // if (newData[index].attributes.name === 'Phone') {
+      //   value = formatPhoneNumber(value);
+      // }
+      newData[index].attributes.value = value;
       that.setState({data: newData});
     };
   }

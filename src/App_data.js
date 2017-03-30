@@ -53,7 +53,7 @@ export const resourceUsers = [
         },
         type: 'string',
         location: 'body',
-        description: '9-digit (US) phone number of the new user'
+        description: '10-digit (US) phone number of the new user'
       }
     ]
   },
@@ -131,7 +131,7 @@ export const resourceUsers = [
         },
         type: 'string',
         location: 'body',
-        description: 'Update 9-digit (US) phone number of the existing user'
+        description: 'Update 10-digit (US) phone number of the existing user'
       }
     ]
   },
