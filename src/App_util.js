@@ -50,8 +50,6 @@ export const fetchRequest = (data) => {
     url += `/${body[0].value}`
   }
 
-  debugger;
-
   return (
     fetch(url, myRequest)
       .then(response => response.json())
