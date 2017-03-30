@@ -103,7 +103,6 @@ export const resourceUsers = [
           value: '',
           placeholder: 'John Doe',
           minLength: 4,
-          required: true
         },
         type: 'string',
         location: 'body',
@@ -117,7 +116,6 @@ export const resourceUsers = [
           value: '',
           placeholder: 'John_Doe@email.com',
           maxLength: 32,
-          required: true
         },
         type: 'string',
         location: 'body',
@@ -181,7 +179,8 @@ export const resourceCars = [
           name: 'Make',
           type: 'text',
           value: '',
-          placeholder: 'Hyundai'
+          placeholder: 'Hyundai',
+          required: true
         },
         type: 'string',
         location: 'body',
@@ -193,7 +192,8 @@ export const resourceCars = [
           name: 'Model',
           type: 'text',
           value: '',
-          placeholder: 'Sonata'
+          placeholder: 'Sonata',
+          required: true
         },
         type: 'string',
         location: 'body',
@@ -205,7 +205,8 @@ export const resourceCars = [
           name: 'Year',
           type: 'number',
           value: '',
-          placeholder: '2017'
+          placeholder: '2017',
+          required: true
         },
         type: 'integer',
         location: 'body',
@@ -217,7 +218,8 @@ export const resourceCars = [
           name: 'Color',
           type: 'text',
           value: '',
-          placeholder: 'blue'
+          placeholder: 'blue',
+          required: true
         },
         type: 'string',
         location: 'body',

@@ -1,8 +1,4 @@
-export const filterObjectsWithKey = (arr, key) => {
-  return arr.reduce((acc, obj) => {
-    return acc.concat([{...obj[key], name: obj.parameter}]);
-  }, []);
-};
+const API_URL = 'https://api-explorer-server.herokuapp.com/';
 
 export const getMethodClass = (method) => {
   let styleClass = 'api-component-method';
@@ -31,6 +27,12 @@ export const hideElementClass = (boolean) => {
   return '';
 }
 
+export const filterObjectsWithKey = (arr, key) => {
+  return arr.reduce((acc, obj) => {
+    return acc.concat([{...obj[key], name: obj.parameter}]);
+  }, []);
+};
+
 export const fetchRequest = (data) => {
   const {method, resource, body} = data;
   const myRequest = {
@@ -40,12 +42,14 @@ export const fetchRequest = (data) => {
     }
   }
 
-  let url = `https://jsonplaceholder.typicode.com/${resource}`;
+  let url = `${API_URL}${resource}`;
 
+  // Only 'patch' and 'post' methods require body
   if (method === 'POST' || method === 'PATCH') {
     myRequest.body = JSON.stringify({body});
   }
 
+  // 'Database entry id' is required for all methods other than post and retrieving all entries of a 'table'
   if ((method !== 'POST') && body.length > 0) {
     url += `/${body[0].value}`
   }
