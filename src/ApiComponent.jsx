@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import ApiComponentParameter from './ApiComponentParameter';
 import ApiComponentResponse from './ApiComponentResponse';
 import {
@@ -8,7 +8,20 @@ import {
 } from './App_util';
 import './Api_component.css';
 
-export default class ApiComponent extends Component  {
+const propTypes = {
+  resource: PropTypes.string.isRequired,
+  route: PropTypes.string.isRequired,
+  routeTitle: PropTypes.string.isRequired,
+  routeDescription: PropTypes.string.isRequired,
+  method: PropTypes.string.isRequired,
+  data: PropTypes.array
+};
+
+const defaultProps = {
+  data: []
+};
+
+class ApiComponent extends Component  {
   constructor(props) {
     super(props);
 
@@ -25,11 +38,7 @@ export default class ApiComponent extends Component  {
     const that = this;
     return (event) => {
       const newData = [...that.state.data];
-      let value = event.target.value;
-      // if (newData[index].attributes.name === 'Phone') {
-      //   value = formatPhoneNumber(value);
-      // }
-      newData[index].attributes.value = value;
+      newData[index].attributes.value = event.target.value;
       that.setState({data: newData});
     };
   }
@@ -67,7 +76,6 @@ export default class ApiComponent extends Component  {
           parameter={parameter}
           index={index}
           resource={resource}
-          route={route}
           handleUpdateParameter={this.handleUpdateParameter}
         />
       );
@@ -125,3 +133,8 @@ export default class ApiComponent extends Component  {
     );
   }
 }
+
+ApiComponent.propTypes = propTypes;
+ApiComponent.defaultProps = defaultProps;
+
+export default ApiComponent;

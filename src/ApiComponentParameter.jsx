@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {formatPhoneNumber} from './App_util';
 import _ from 'underscore';
 
-export default function ApiComponentParameter({
+const propTypes = {
+  parameter: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  resource: PropTypes.string.isRequired,
+  handleUpdateParameter: PropTypes.func.isRequired
+};
+
+function ApiComponentParameter({
   parameter,
   handleUpdateParameter,
   index,
@@ -38,3 +45,7 @@ export default function ApiComponentParameter({
 
   return <div className="Api-component-parameter">{renderCategories}</div>;
 }
+
+ApiComponentParameter.propTypes = propTypes;
+
+export default ApiComponentParameter;

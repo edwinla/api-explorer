@@ -4,8 +4,7 @@ export const resourceUsers = [
     route: '/users',
     routeTitle: 'List Users',
     routeDescription: 'Returns a list of available users',
-    method: 'GET',
-    data: []
+    method: 'GET'
   },
   {
     resource: 'users',
@@ -163,8 +162,7 @@ export const resourceCars = [
     route: '/cars',
     routeTitle: 'List Cars',
     routeDescription: 'Returns a list of vehicle entries in the database',
-    method: 'GET',
-    data: []
+    method: 'GET'
   },
   {
     resource: 'cars',
