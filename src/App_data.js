@@ -251,7 +251,7 @@ export const resourceCars = [
   {
     resource: 'cars',
     route: '/cars/{id}',
-    routeTitle: 'Create Car',
+    routeTitle: 'Update Car',
     routeDescription: 'Updates data about a car with a valid car id',
     method: 'PATCH',
     data: [
