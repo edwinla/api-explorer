@@ -1,3 +1,5 @@
+import _ from 'underscore';
+
 const API_URL = 'https://api-explorer-server.herokuapp.com/';
 
 export const hideElementClass = (boolean) => {
@@ -5,14 +7,30 @@ export const hideElementClass = (boolean) => {
   return '';
 }
 
+// Return an array of objects that matches the key while also ignoring optional values that are blank
 export const filterObjectsWithKey = (arr, key) => {
   return arr.reduce((acc, obj) => {
-    return acc.concat([{...obj[key], name: obj.parameter}]);
+    const keyed = obj[key];
+    if (keyed.value === '') return acc;
+
+    return acc.concat([{...obj[key]}]);
   }, []);
 };
 
+// merge original entry with new entry, excluding the 'id' parameter
+const mergeForPatchRequest = (responseData, newData) => {
+  const merged = _.uniq(
+    _.union(newData, responseData),
+    false,
+    _.property('name')
+  );
+
+
+  return _.filter(merged, (parameter) => {return parameter.name !== 'id'});
+}
+
 export const fetchRequest = (data) => {
-  const {method, resource, body} = data;
+  let {method, resource, body} = data;
   const myRequest = {
     method: method,
     headers: {
@@ -22,18 +40,30 @@ export const fetchRequest = (data) => {
 
   let url = `${API_URL}${resource}`;
 
-  // Only 'patch' and 'post' methods require body
-  if (method === 'POST' || method === 'PATCH') {
-    myRequest.body = JSON.stringify({body});
-  }
-
   // 'Database entry id' is required for all methods other than post and retrieving all entries of a 'table'
-  if ((method !== 'POST') && body.length > 0) {
-    url += `/${body[0].value}`
+  if ((method !== 'POST') && body.length > 0) url += `/${body[0].value}`;
+
+  // If patch, we need to request the original entry and merge with new data since the server will just replace the entry (json-server limitation)
+  if (method === 'PATCH') {
+    myRequest.method = 'GET'
+    return (
+      fetch(url, myRequest)
+        .then(response => response.json())
+        .then((json) => {
+          body = mergeForPatchRequest(json.body, body);
+          myRequest.method = 'PATCH';
+          const patchRequest = {
+            ...myRequest,
+            body: JSON.stringify({body})
+          };
+
+          return fetch(url, patchRequest).then(response => response.json());
+        })
+    );
   }
 
-  return (
-    fetch(url, myRequest)
-      .then(response => response.json())
-  );
+  // Only 'patch' and 'post' methods require body
+  if (method === 'POST') myRequest.body = JSON.stringify({body});
+
+  return fetch(url, myRequest).then(response => response.json())
 }

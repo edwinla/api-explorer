@@ -10,6 +10,10 @@
   cursor: pointer;
 }
 
+.Api-component-title:hover {
+  background-color: #eee;
+}
+
 .Api-component-method {
   text-transform: uppercase;
   font-weight: bold;
