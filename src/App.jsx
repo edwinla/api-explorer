@@ -1,7 +1,6 @@
 import React from 'react';
 import ApiComponent from './ApiComponent';
 import './App.css';
-import cogwheel from './cogwheel.svg';
 import {resourceUsers, resourceCars} from './App_data';
 
 const App = () => {
@@ -18,8 +17,8 @@ const App = () => {
   return (
     <div className="App">
       <div className="App-header">
-        <img src={cogwheel} className="App-logo" alt="logo" />
-        <h2>Welcome to API Explorer</h2>
+        <img src={process.env.PUBLIC_URL + '/smartcar_logo.png'} className="App-logo" alt="logo" />
+        <h2>API EXPLORER</h2>
       </div>
       <p className="App-intro">
         This API Explorer performs requests on a fake online RESTful API server powered by <a className="App-link" href="https://github.com/typicode/json-server" target="_blank">json-server</a>.
