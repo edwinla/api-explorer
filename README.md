@@ -11,4 +11,4 @@ Valid HTTP methods include:
 - PATCH
 - DELETE
 
-[Full endpoints schema](./docs/schema.md)
+[Endpoints schema](./docs/schema.md)
