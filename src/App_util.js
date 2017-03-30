@@ -7,6 +7,21 @@ export const hideElementClass = (boolean) => {
   return '';
 }
 
+export const formatPhoneNumber = (phoneStr) => {
+  let formatted = "";
+  for (let i = 0; i < phoneStr.length; i++) {
+    const char = phoneStr[i], fLength = formatted.length
+
+    if (char === ' ') continue;
+
+    if (i !== fLength - 1 && (fLength === 3 || fLength === 7)) formatted += " ";
+    formatted += phoneStr[i];
+  }
+  if (formatted.length > 12) return formatted.slice(0, 12);
+
+  return formatted;
+};
+
 // Return an array of objects that matches the key while also ignoring optional values that are blank
 export const filterObjectsWithKey = (arr, key) => {
   return arr.reduce((acc, obj) => {

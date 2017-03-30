@@ -4,8 +4,7 @@ export const resourceUsers = [
     route: '/users',
     routeTitle: 'List Users',
     routeDescription: 'Returns a list of available users',
-    method: 'GET',
-    data: []
+    method: 'GET'
   },
   {
     resource: 'users',
@@ -53,7 +52,7 @@ export const resourceUsers = [
         },
         type: 'string',
         location: 'body',
-        description: '9-digit (US) phone number of the new user'
+        description: '10-digit (US) phone number of the new user'
       }
     ]
   },
@@ -131,7 +130,7 @@ export const resourceUsers = [
         },
         type: 'string',
         location: 'body',
-        description: 'Update 9-digit (US) phone number of the existing user'
+        description: 'Update 10-digit (US) phone number of the existing user'
       }
     ]
   },
@@ -163,8 +162,7 @@ export const resourceCars = [
     route: '/cars',
     routeTitle: 'List Cars',
     routeDescription: 'Returns a list of vehicle entries in the database',
-    method: 'GET',
-    data: []
+    method: 'GET'
   },
   {
     resource: 'cars',

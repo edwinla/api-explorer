@@ -1,7 +1,12 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import './Api_component_response.css';
 
-const ApiComponentResponse = ({response, hideClass}) => {
+const propTypes = {
+  response: PropTypes.object.isRequired,
+  hideClass: PropTypes.string.isRequired
+};
+
+function ApiComponentResponse({response, hideClass}) {
   return (
     <div className={`Api-component-response ${hideClass}`}>
       <pre className="Api-component-response-pretty-print">
@@ -9,6 +14,8 @@ const ApiComponentResponse = ({response, hideClass}) => {
       </pre>
     </div>
   );
-};
+}
+
+ApiComponentResponse.propTypes = propTypes;
 
 export default ApiComponentResponse;
