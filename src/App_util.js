@@ -10,11 +10,12 @@ export const hideElementClass = (boolean) => {
 export const formatPhoneNumber = (phoneStr) => {
   let formatted = "";
   for (let i = 0; i < phoneStr.length; i++) {
-    const char = phoneStr[i], fLength = formatted.length
+    const char = phoneStr[i];
+    const fLen = formatted.length;
 
     if (char === ' ') continue;
 
-    if (i !== fLength - 1 && (fLength === 3 || fLength === 7)) formatted += " ";
+    if (i !== fLen - 1 && (fLen === 3 || fLen === 7)) formatted += " ";
     formatted += phoneStr[i];
   }
   if (formatted.length > 12) return formatted.slice(0, 12);
@@ -40,7 +41,6 @@ const mergeForPatchRequest = (responseData, newData) => {
     _.property('name')
   );
 
-
   return _.filter(merged, (parameter) => {return parameter.name !== 'id'});
 }
 
@@ -51,8 +51,7 @@ export const fetchRequest = (data) => {
     headers: {
       'Content-Type': 'application/json'
     }
-  }
-
+  };
   let url = `${API_URL}${resource}`;
 
   // 'Database entry id' is required for all methods other than post and retrieving all entries of a 'table'
@@ -80,5 +79,5 @@ export const fetchRequest = (data) => {
   // Only 'patch' and 'post' methods require body
   if (method === 'POST') myRequest.body = JSON.stringify({body});
 
-  return fetch(url, myRequest).then(response => response.json())
+  return fetch(url, myRequest).then(response => response.json());
 }
