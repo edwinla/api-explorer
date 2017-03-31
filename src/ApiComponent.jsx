@@ -53,7 +53,8 @@ class ApiComponent extends Component  {
     };
 
     fetchRequest(requestParams)
-      .then(response => this.setState({response: response.json()}))
+      .then(success => success.json())
+      .then((promise) => this.setState({response: {[resource]: promise}}))
       .catch(error => this.setState({response: error.message}));
   }
 
