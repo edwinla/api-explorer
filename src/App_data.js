@@ -69,6 +69,8 @@ export const resourceUsers = [
           name: 'id',
           type: 'number',
           value: '',
+          required: true,
+          pattern: '\\d*'
         },
         type: 'integer',
         location: 'url',
@@ -89,6 +91,8 @@ export const resourceUsers = [
           name: 'id',
           type: 'number',
           value: '',
+          required: true,
+          pattern: '\\d*'
         },
         type: 'integer',
         location: 'url',
@@ -147,6 +151,8 @@ export const resourceUsers = [
           name: 'id',
           type: 'number',
           value: '',
+          required: true,
+          pattern: '\\d*'
         },
         type: 'integer',
         location: 'url',
@@ -238,7 +244,8 @@ export const resourceCars = [
           name: 'id',
           type: 'number',
           value: '',
-          placeholder: '1'
+          required: true,
+          pattern: '\\d*'
         },
         type: 'integer',
         location: 'url',
@@ -259,7 +266,8 @@ export const resourceCars = [
           name: 'id',
           type: 'number',
           value: '',
-          placeholder: '1'
+          required: true,
+          pattern: '\\d*'
         },
         type: 'integer',
         location: 'url',
@@ -328,6 +336,8 @@ export const resourceCars = [
           name: 'id',
           type: 'number',
           value: '',
+          required: true,
+          pattern: '\\d*'
         },
         type: 'integer',
         location: 'url',

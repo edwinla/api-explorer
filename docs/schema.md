@@ -2,16 +2,16 @@
 
 ## JSON API
 
-### Drivers
-
-- `POST /api/drivers`
-- `GET /api/cars/:id`
-- `PATCH /api/drivers/:id`
-- `DELETE /api/drivers/:id`
+### Users
+- `GET /users`
+- `POST /users`
+- `GET /users/:id`
+- `PATCH /users/:id`
+- `DELETE /users/:id`
 
 ### Cars
-
-- `POST /api/cars`
-- `GET /api/cars/:id`
-- `PATCH /api/cars/:id`
-- `DELETE /api/cars/:id`
+- `GET /cars`
+- `POST /cars`
+- `GET /cars/:id`
+- `PATCH /cars/:id`
+- `DELETE /cars/:id`
