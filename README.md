@@ -40,13 +40,13 @@ API Explorer returns an array of objects corresponding to the body of each entry
 
 ## Usage
 
-Clone the repo and edit *`App_data.js`* and change the `API_URL` in *`App_util.js`*
+Clone the repo
 
 ```bash
 $ git clone https://github.com/laed37/api-explorer.git
 ```
 
-Add your own resource data into *`src/App_data.js`*. Note that the keys in each object correspond to props as defined in *`src/ApiComponent`*.
+Add your own resource data into *`src/App_data.js`*. Note that the keys in each object correspond to props as defined in *`src/ApiComponent.js`*.
 
 ```js
 const myResourceData = [
@@ -59,7 +59,7 @@ const myResourceData = [
   },
 ]
 ```
-Change the `API_URL` in *`App_util.js`*
+Change the `API_URL` in *`src/App_util.js`*
 ```js
 const API_URL = 'YOUR_API_URL'
 ```
