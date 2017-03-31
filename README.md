@@ -4,7 +4,7 @@
 
 A front-end React web-application that allows users to explore a RESTful API using most valid HTTP methods. All requests uses the fetch web API to serve responses the API explorer server (json-server).
 
-## Response:
+## Response
 API Explorer returns an array of objects corresponding to the body of each entry.  Key-value pairs of HTML5 input attributes represent schema data.
 
 ```json
@@ -76,7 +76,7 @@ Returns a list of all user entries
 ##### `POST /users`
 Creates a new user using full-name, email, and phone number (optional)
 
-###### Input parameters:
+##### Input parameters
 | parameters 	| value              	| type   	| location 	| description                                	|
 |------------	|--------------------	|--------	|----------	|--------------------------------------------	|
 | full name  	| John Doe           	| `string` 	| body     	| full name of the new user                  	|
@@ -87,7 +87,7 @@ Creates a new user using full-name, email, and phone number (optional)
 ##### `GET /users/{id}`
 Returns data about a user with the entry id
 
-###### Input parameters:
+##### Input parameters
 | parameters 	| value        	| type    	| location 	| description                                           	|
 |------------	|--------------	|---------	|----------	|-------------------------------------------------------	|
 | id         	| 1            	| `integer` 	| url      	| Integer index value corresponding to user in database 	|
@@ -96,7 +96,7 @@ Returns data about a user with the entry id
 ##### `PATCH /users/${id}`
 Updates and returns data about a user with entry id and optional parameters
 
-###### Input parameters:
+##### Input parameters
 | parameters 	| value                	| type    	| location 	| description                                             	|
 |------------	|----------------------	|---------	|----------	|---------------------------------------------------------	|
 | id         	| 1                    	| `integer` 	| url      	| Integer index value corresponding to user in database   	|
@@ -108,7 +108,7 @@ Updates and returns data about a user with entry id and optional parameters
 #### `DELETE /users/${id}`
 Deletes user from database with the entry id
 
-###### Input parameters:
+##### Input parameters
 *See `GET /users/{id}`*
 
 ### Cars
@@ -121,7 +121,7 @@ Returns a list of all vehicle entries
 ##### `POST /cars`
 Creates a new car using make, model, year, and color
 
-###### Input parameters:
+##### Input parameters
 | parameters 	| value   	| type    	| location 	| description                	|
 |------------	|---------	|---------	|----------	|----------------------------	|
 | make       	| Hyundai 	| `string`  	| body     	| Make of the new car entry  	|
@@ -132,7 +132,7 @@ Creates a new car using make, model, year, and color
 ##### `GET /cars/${id}`
 Returns a data about a vehicle entry in the database
 
-###### Input parameters:
+##### Input parameters
 | parameters 	| value   	| type    	| location 	| description                                              	|
 |------------	|---------	|---------	|----------	|----------------------------------------------------------	|
 | id         	| 1       	| `integer` 	| url      	| Integer index value corresponding to vehicle in database 	|
@@ -140,7 +140,7 @@ Returns a data about a vehicle entry in the database
 ##### `PATCH /cars/${id}`
 Updates and returns data about a car with entry id and optional parameters
 
-###### Input parameters:
+##### Input parameters
 | parameters 	| value   	| type    	| location 	| description                                              	|
 |------------	|---------	|---------	|----------	|----------------------------------------------------------	|
 | id         	| 1       	| `integer` 	| url      	| Integer index value corresponding to vehicle in database 	|
@@ -152,7 +152,7 @@ Updates and returns data about a car with entry id and optional parameters
 ##### `DELETE /cars/${id}`
 Deletes car from database with the entry id
 
-###### Input parameters:
+##### Input parameters
 *See `GET /cars/{id}`*
 
 ## Built with API Explorer
