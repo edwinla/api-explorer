@@ -170,7 +170,7 @@ export const resourceCars = [
     resource: 'cars',
     route: '/cars',
     routeTitle: 'List Cars',
-    routeDescription: 'Returns a list of vehicle entries in the database',
+    routeDescription: 'Returns a list of car entries in the database',
     method: 'GET'
   },
   {
