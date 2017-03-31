@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
-        <img src={process.env.PUBLIC_URL + '/smartcar_logo.png'} className="App-logo" alt="logo" />
+        <img src={process.env.PUBLIC_URL + '/cogwheel.svg'} className="App-logo" alt="logo" />
         <h2>API EXPLORER</h2>
       </div>
       <p className="App-intro">
