@@ -69,6 +69,7 @@ export const resourceUsers = [
           name: 'id',
           type: 'number',
           value: '',
+          placeholder: 1,
           required: true,
           pattern: '\\d*'
         },
@@ -91,6 +92,7 @@ export const resourceUsers = [
           name: 'id',
           type: 'number',
           value: '',
+          placeholder: 1,
           required: true,
           pattern: '\\d*'
         },
@@ -151,6 +153,7 @@ export const resourceUsers = [
           name: 'id',
           type: 'number',
           value: '',
+          placeholder: 1,
           required: true,
           pattern: '\\d*'
         },
@@ -244,6 +247,7 @@ export const resourceCars = [
           name: 'id',
           type: 'number',
           value: '',
+          placeholder: 1,
           required: true,
           pattern: '\\d*'
         },
@@ -266,6 +270,7 @@ export const resourceCars = [
           name: 'id',
           type: 'number',
           value: '',
+          placeholder: 1,
           required: true,
           pattern: '\\d*'
         },
@@ -336,6 +341,7 @@ export const resourceCars = [
           name: 'id',
           type: 'number',
           value: '',
+          placeholder: 1,
           required: true,
           pattern: '\\d*'
         },
