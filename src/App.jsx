@@ -21,7 +21,7 @@ function App() {
         <h2>API EXPLORER</h2>
       </div>
       <p className="App-intro">
-        This API Explorer performs requests on a fake online RESTful API server powered by <a className="App-link" href="https://github.com/typicode/json-server" target="_blank">json-server</a>.
+        This API Explorer performs requests on ab online RESTful API server powered by <a className="App-link" href="https://github.com/typicode/json-server" target="_blank">json-server</a>.
       </p>
       <div className="App-content">
         <div>

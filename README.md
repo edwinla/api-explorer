@@ -105,7 +105,7 @@ Updates and returns data about a user with entry id and optional parameters
 | phone      	| 333 333 3333         	| `string`  	| body     	| Updates 10-digit (US) phone number of the existing user 	|
 
 
-#### `DELETE /users/${id}`
+##### `DELETE /users/${id}`
 Deletes user from database with the entry id
 
 ##### Input parameters
