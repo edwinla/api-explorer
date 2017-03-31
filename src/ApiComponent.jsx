@@ -52,10 +52,9 @@ class ApiComponent extends Component  {
       body: filterObjectsWithKey(this.state.data, 'attributes')
     };
 
-    // fetchRequest(requestParams)
-    //   .then(response => this.setState({response}));
     fetchRequest(requestParams)
-      .then(response => this.setState({response: response.json()}))
+      .then(success => success.json())
+      .then((promise) => this.setState({response: {[resource]: promise}}))
       .catch(error => this.setState({response: error.message}));
   }
 
