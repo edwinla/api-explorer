@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-const API_URL = 'https://api-explorer-server.herokuapp.com/';
+const API_URL = 'YOUR_API_URL';
 
 export const hideElementClass = (boolean) => {
   if (boolean) return 'Hide-element';
