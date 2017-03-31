@@ -238,7 +238,7 @@ export const resourceCars = [
     resource: 'cars',
     route: '/cars/{id}',
     routeTitle: 'Get Car',
-    routeDescription: 'Returns a list of vehicle entries in the database',
+    routeDescription: 'Returns data about a car with it\'s id',
     method: 'GET',
     data: [
       {
