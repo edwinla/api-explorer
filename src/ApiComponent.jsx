@@ -53,7 +53,8 @@ class ApiComponent extends Component  {
     };
 
     fetchRequest(requestParams)
-      .then(response => this.setState({response}));
+      .then(response => this.setState({response: response.json()}))
+      .catch(error => this.setState({response: error.message}));
   }
 
   handleToggleDisplay = () => {

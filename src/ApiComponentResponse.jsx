@@ -2,7 +2,10 @@ import React, {PropTypes} from 'react';
 import './Api_component_response.css';
 
 const propTypes = {
-  response: PropTypes.object.isRequired,
+  response: PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.object
+  ]).isRequired,
   hideClass: PropTypes.string.isRequired
 };
 

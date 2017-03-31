@@ -1,6 +1,6 @@
 import _ from 'underscore';
 
-const API_URL = 'YOUR_API_URL';
+const API_URL = 'https://api-explorer-server.herokuapp.com/';
 
 export const hideElementClass = (boolean) => {
   if (boolean) return 'Hide-element';
@@ -44,6 +44,11 @@ const mergeForPatchRequest = (responseData, newData) => {
   return _.filter(merged, (parameter) => {return parameter.name !== 'id'});
 }
 
+const handleErrors = (response) => {
+    if (!response.ok) throw Error(response.statusText);
+    return response;
+};
+
 export const fetchRequest = (data) => {
   let {method, resource, body} = data;
   const myRequest = {
@@ -79,5 +84,5 @@ export const fetchRequest = (data) => {
   // Only 'patch' and 'post' methods require body
   if (method === 'POST') myRequest.body = JSON.stringify({body});
 
-  return fetch(url, myRequest).then(response => response.json());
+  return fetch(url, myRequest).then(handleErrors);
 }
