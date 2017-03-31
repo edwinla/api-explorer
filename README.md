@@ -116,7 +116,7 @@ Deletes user from database with the entry id
 #### methods
 
 ##### `GET /cars`
-Returns a list of all vehicle entries
+Returns a list of all car entries
 
 ##### `POST /cars`
 Creates a new car using make, model, year, and color
@@ -130,12 +130,12 @@ Creates a new car using make, model, year, and color
 | color      	| white    	| `string`  	| body     	| Color of the new car entry 	|
 
 ##### `GET /cars/${id}`
-Returns a data about a vehicle entry in the database
+Returns a data about a car entry in the database
 
 ##### Input parameters
 | parameters 	| value   	| type    	| location 	| description                                              	|
 |------------	|---------	|---------	|----------	|----------------------------------------------------------	|
-| id         	| 1       	| `integer` 	| url      	| Integer index value corresponding to vehicle in database 	|
+| id         	| 1       	| `integer` 	| url      	| Integer index value corresponding to car in database 	|
 
 ##### `PATCH /cars/${id}`
 Updates and returns data about a car with entry id and optional parameters
@@ -143,7 +143,7 @@ Updates and returns data about a car with entry id and optional parameters
 ##### Input parameters
 | parameters 	| value   	| type    	| location 	| description                                              	|
 |------------	|---------	|---------	|----------	|----------------------------------------------------------	|
-| id         	| 1       	| `integer` 	| url      	| Integer index value corresponding to vehicle in database 	|
+| id         	| 1       	| `integer` 	| url      	| Integer index value corresponding to car in database 	|
 | make       	| (*blank*) 	| `string`  	| body     	| Updates make of the existing car entry                   	|
 | model      	| (*blank*)  	| `string`  	| body     	| Updates model of the existing car entry                  	|
 | year       	| (*blank*)    	| `integer` 	| body     	| Updates year of the existing car entry                   	|
