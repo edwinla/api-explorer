@@ -59,10 +59,8 @@ export const fetchRequest = (data) => {
   };
   let url = `${API_URL}${resource}`;
 
-  // 'Database entry id' is required for all methods other than post and retrieving all entries of a 'table'
   if ((method !== 'POST') && body.length > 0) url += `/${body[0].value}`;
 
-  // If patch, we need to request the original entry and merge with new data since the server will just replace the entry (json-server limitation)
   if (method === 'PATCH') {
     myRequest.method = 'GET'
     return (
@@ -81,7 +79,6 @@ export const fetchRequest = (data) => {
     );
   }
 
-  // Only 'patch' and 'post' methods require body
   if (method === 'POST') myRequest.body = JSON.stringify({body});
 
   return fetch(url, myRequest).then(handleErrors);
