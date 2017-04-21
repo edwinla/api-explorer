@@ -1,6 +1,6 @@
 # API Explorer
 
-[Live Demo](https://laed37.github.io/api-explorer)
+[Live Demo](https://edwinla.github.io/api-explorer)
 
 A front-end React web-application that allows users to explore a RESTful API using most valid HTTP methods. All requests uses the fetch web API to serve responses the API explorer server (json-server).
 
